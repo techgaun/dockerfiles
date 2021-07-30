@@ -1,0 +1,13 @@
+FROM elixir:1.8.2-alpine
+
+LABEL maintainer="samar@techgaun.com"
+LABEL org.opencontainers.image.authors="samar@techgaun.com"
+LABEL org.opencontainers.image.title="Dockerfile for elixir with build-base & other basics"
+LABEL org.opencontainers.image.url="https://github.com/techgaun/dockerfiles"
+LABEL org.opencontainers.image.documentation="https://github.com/techgaun/dockerfiles#readme"
+LABEL org.opencontainers.image.source="https://github.com/techgaun/dockerfiles"
+
+RUN apk update && apk upgrade && \
+  apk add --no-cache bash git build-base jq openssh-client
+
+RUN mix do local.hex --force, local.rebar --force
